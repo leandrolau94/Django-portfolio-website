@@ -32,19 +32,9 @@
                 <label for="category" class="text-sm font-medium leading-6 text-gray-900">Select Category</label>
                 <div class="mt-2">
                     <select id="category" name="category" autocomplete="category-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                        <option>homework</option>
-                        <option>sport</option>
-                        <option>travel</option>
-                        <option>clothes</option>
-                        <option>study</option>
-                        <option>work</option>
-                        <option>friends</option>
-                        <option>games</option>
-                        <option>food</option>
-                        <option>money</option>
-                        <option>health</option>
-                        <option>insurance</option>
-                        <option>vacation</option>
+                        {% for label in categories_label %}
+                            <option>{{label}}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>

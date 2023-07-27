@@ -7,8 +7,13 @@ from .models import Category, Task
 # Create your views here.
 def index(request):
     categories = Category.objects.all()
+    categories_label = [
+        "cars", "clothes", "food", "friends", "games", "health", "homework",
+        "insurance", "money", "sport", "study", "travel", "vacation", "work"
+    ]
     context = {
         "categories": categories,
+        "categories_label": categories_label
     }
     return render(request, 'todo/index.html', context)
 
