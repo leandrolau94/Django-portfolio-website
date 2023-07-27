@@ -10,10 +10,10 @@
 <body>
     {% include "todo/header.html" %}
 
-    {% if categories %}
+    {% if categories_and_labels.categories %}
         <div class="flex md:container md:mx-auto grid grid-cols-3 gap-2 m-2 mt-10 mb-10">
-            {% for category in categories %}
-                <a href="#" class="border-2 text-center p-5 rounded-lg text-teal-700 shadow hover:shadow-lg">
+            {% for category in categories_and_labels.categories %}
+                <a href="{% url 'todo:detail' category.id %}" class="border-2 text-center p-5 rounded-lg text-teal-700 shadow hover:shadow-lg">
                     {{category.category_name}}
                 </a>
             {% endfor %}
@@ -32,7 +32,7 @@
                 <label for="category" class="text-sm font-medium leading-6 text-gray-900">Select Category</label>
                 <div class="mt-2">
                     <select id="category" name="category" autocomplete="category-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                        {% for label in categories_label %}
+                        {% for label in categories_and_labels.categories_label %}
                             <option>{{label}}</option>
                         {% endfor %}
                     </select>
