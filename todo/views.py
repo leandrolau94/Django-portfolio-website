@@ -41,3 +41,9 @@ def create_task(request):
         created_at=timezone.now()
     )
     return HttpResponseRedirect(reverse('todo:detail', args=(request.POST['category_id'],)))
+
+def task_delete(request):
+    category = Category.objects.get(pk=request.POST['category_id_del'])
+    task = category.task_set.filter(pk=request.POST['task_id_del'])
+    task.delete()
+    return HttpResponseRedirect(reverse('todo:detail', args=(request.POST['category_id_del'],)))
