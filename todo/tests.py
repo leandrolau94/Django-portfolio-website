@@ -567,3 +567,21 @@ class CategoryIndexViewTest(TestCase):
             ],
             ordered=False
         )
+
+class CategoryDetailViewTest(TestCase):
+    """For detail view response"""
+    def test_response(self):
+        """test for index view get response"""
+        cars_category = create_category(category_name='cars')
+        url = reverse("todo:detail", args=(cars_category.id,))
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "todo/category_detail.html")
+        self.assertContains(response, cars_category.pk)
+    
+    def test_render_template(self):
+        """test for index view get response"""
+        cars_category = create_category(category_name='cars')
+        url = reverse("todo:detail", args=(cars_category.id,))
+        response = self.client.get(url)
+        self.assertTemplateUsed(response, "todo/category_detail.html")

@@ -1,3 +1,5 @@
+from typing import Any
+from django.db import models
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.views import generic
@@ -26,6 +28,9 @@ class IndexView(generic.ListView):
 class CategoryDetailView(generic.DetailView):
     model = Category
     template_name = "todo/category_detail.html"
+
+    def get_queryset(self):
+        return Category.objects.all()
 
 def create_category(request):
     new_category_name = request.POST['category']
