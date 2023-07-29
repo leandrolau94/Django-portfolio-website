@@ -13,9 +13,15 @@
     {% if categories_and_labels.categories %}
         <div class="flex md:container md:mx-auto grid grid-cols-3 gap-2 m-2 mt-10 mb-10">
             {% for category in categories_and_labels.categories %}
-                <a href="{% url 'todo:detail' category.id %}" class="border-2 text-center p-3 rounded-lg text-teal-700 shadow hover:shadow-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-105 duration-700">
-                    {{category.category_name}}
-                </a>
+                {% if category.task_set.all.count > 0 %}
+                    <a href="{% url 'todo:detail' category.id %}" class="border-2 text-center p-3 rounded-lg text-teal-300 shadow hover:shadow-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-105 duration-700 bg-teal-900">
+                        {{category.category_name}}
+                    </a>
+                {% else %}
+                    <a href="{% url 'todo:detail' category.id %}" class="border-2 text-center p-3 rounded-lg text-teal-700 shadow hover:shadow-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-105 duration-700">
+                        {{category.category_name}}
+                    </a>
+                {% endif %}
             {% endfor %}
         </div>
     {% else %}
