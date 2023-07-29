@@ -291,3 +291,16 @@ class CategoryIndexViewTest(TestCase):
             [cars_category, work_category],
             ordered=False
         )
+    
+    """Tests for only three categories"""
+    def test_three_categories(self):
+        """Only three categories are displayed in the index page"""
+        friends_category = create_category(category_name='friends')
+        insurance_category = create_category(category_name='insurance')
+        sport_category = create_category(category_name='sport')
+        response = self.client.get(reverse('todo:index'))
+        self.assertQuerysetEqual(
+            response.context["categories_and_labels"]["categories"],
+            [friends_category, insurance_category, sport_category],
+            ordered=False
+        )
