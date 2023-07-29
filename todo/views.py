@@ -4,6 +4,7 @@ from django.views import generic
 from django.urls import reverse
 from django.utils import timezone
 from .models import Category, Task
+from .labels import categories_label
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -12,10 +13,10 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         categories = Category.objects.all()
-        categories_label = [
-            "cars", "clothes", "food", "friends", "games", "health", "homework",
-            "insurance", "money", "sport", "study", "travel", "vacation", "work"
-        ]
+        for label in categories_label:
+            for category in categories:
+                if label["category"] == category.category_name:
+                    label["stored"] = True
         context = {
             "categories": categories,
             "categories_label": categories_label
