@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <title>Document</title>
+</head>
+<body>
+    {% include 'polls/header.html' %}
+
+    <form action="{% url 'polls:vote' question.id %}" method="post" class="m-5">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1 class="prose-xl">{{ question.question_text }}</h1></legend>
+            {% if error_message %}
+                <div role="alert" class="animate-bounce">
+                    <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                      Choice Alert
+                    </div>
+                    <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                      <p>{{ error_message }}</p>
+                    </div>
+                </div>
+            {% endif %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Vote" class="text-white bg-teal-700 hover:bg-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 mt-3 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none">
+    </form>
+
+    <div class="container mx-auto flex justify-center">
+        <a href="{% url 'polls:index' %}" class="text-white bg-blue-700 hover:bg-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-teal-600 dark:hover:bg-teal-700 focus:outline-none m-5 max-w-lg">
+            Back
+        </a>
+    </div>
+</body>
+</html>
