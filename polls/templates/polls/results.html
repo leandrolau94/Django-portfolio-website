@@ -13,7 +13,13 @@
     <ul class="list-none m-5">
         {% for choice in question.choice_set.all %}
             <li class="mb-5">
-                {{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}
+                {{choice.choice_text}}
+                <button type="button" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">
+                    vote{{choice.votes|pluralize}}
+                    <span class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-teal-800 bg-teal-200 rounded-full">
+                      {{choice.votes}}
+                    </span>
+                </button>
             </li>
         {% endfor %}
     </ul>
