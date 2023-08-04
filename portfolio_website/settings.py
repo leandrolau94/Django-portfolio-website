@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'weather.apps.WeatherConfig',
     'polls.apps.PollsConfig',
+    'login_system.apps.LoginSystemConfig',
 ]
 
 MIDDLEWARE = [

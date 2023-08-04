@@ -22,4 +22,5 @@ urlpatterns = [
     path('todo/', include('todo.urls')),
     path('weather/', include('weather.urls')),
     path('polls/', include('polls.urls')),
+    path('login_system/', include('login_system.urls')),
 ]
