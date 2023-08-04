@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body class="h-screen">
+
+    <div class="bg-[url(https://wallpapercave.com/wp/ejtksZp.jpg)] bg-no-repeat bg-cover bg-auto h-full">
+        <h1 class="flex justify-center prose-2xl p-5 font-bold text-white">Login System App</h1>
+
+        <section class="bg-inherit">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <div class="w-full bg-inherit rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            Log in to your account
+                        </h1>
+                        <form class="space-y-4 md:space-y-6" action="{% url 'login_system:log_in' %}" method="post">
+                            {% csrf_token %}
+                            <div class="bg-inherit">
+                                <input type="text" name="username" id="username" class="bg-inherit text-white sm:text-sm block w-full p-2.5 dark:placeholder-white dark:text-white border-transparent ring-0" placeholder="Tap User Name" required="" />
+                            </div>
+                            <div class="bg-inherit">
+                                <input type="password" name="password" id="password" placeholder="Tap Password" class="bg-inherit text-white sm:text-sm block w-full p-2.5 dark:placeholder-white dark:text-white border-transparent ring-0" required />
+                            </div>
+                            <div class="bg-inherit">
+                                <input type="password" name="secret" id="secret" placeholder="Tap Secret Phrase" class="bg-inherit text-white sm:text-sm block w-full p-2.5 dark:placeholder-white dark:text-white border-transparent ring-0" required />
+                            </div>
+                            <button type="submit" class="w-auto bg-inherit text-white bg-primary-600 hover:bg-primary-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center">Log in</button>
+                            <div class="flex items-center justify-between">
+                                <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                            </div>
+                            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                Do not have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Create account</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
+</body>
+</html>
