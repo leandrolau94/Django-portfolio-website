@@ -10,7 +10,11 @@
 </head>
 <body>
     {% if user %}
-        <p>wellcome {{user.user_name}}!</p>
+        {% include 'login_system/header.html' %}
+        <h1 class="prose-xl m-5">wellcome {{user.user_name}}!</h1>
+        <p class="m-5">
+            We hope you join us in this adventure and enjoy!
+        </p>
     {% endif %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
 </body>
