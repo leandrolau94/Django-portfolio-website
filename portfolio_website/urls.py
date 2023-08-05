@@ -23,4 +23,5 @@ urlpatterns = [
     path('weather/', include('weather.urls')),
     path('polls/', include('polls.urls')),
     path('login_system/', include('login_system.urls')),
+    path('schoolms/', include('schoolms.urls')),
 ]

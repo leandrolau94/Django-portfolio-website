@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'weather.apps.WeatherConfig',
     'polls.apps.PollsConfig',
     'login_system.apps.LoginSystemConfig',
+    'schoolms.apps.SchoolmsConfig',
 ]
 
 MIDDLEWARE = [
