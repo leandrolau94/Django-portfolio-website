@@ -9,11 +9,14 @@
         <title>Document</title>
     </head>
     <body>
-        {% include 'schoolms/header.html' %}
 
-        <div class="bg-[url(https://www.globalteksecurity.com/wp-content/uploads/2021/11/dlp_guide_-_hero.jpg)] bg-no-repeat bg-cover bg-center h-96 justify-center">
-            <p class="font-mono flex justify-center prose-2xl text-white p-10">Wellcome to Marks Management System. The place where teachers can optimally manage the grades of their students</p>
-        </div>
+        {% if professor %}
+            <div class="flex items-center text-sm font-bold px-4 py-3">
+                <p>Hello {{professor.user_name}}</p>
+            </div>
+
+            <a href="{% url 'schoolms:login_page' %}">Log out</a>
+        {% endif %}
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     </body>
