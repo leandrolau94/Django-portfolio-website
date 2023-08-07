@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 from .models import Professor, Group, Student, Subject
 
 # Create your views here.
@@ -45,3 +47,13 @@ def log_in(request):
             "error_login_msg": error_login_msg
         }
         return render(request, "schoolms/login_page.html", context)
+
+def create_new_group(request, professor_id):
+    professor = Professor.objects.get(id=professor_id)
+    group_name = request.POST['group_name']
+    academic_level = request.POST['academic_level']
+    professor.group_set.create(group_name=group_name, academic_level=academic_level)
+    context = {
+        "professor": professor
+    }
+    return render(request, "schoolms/account.html", context)
