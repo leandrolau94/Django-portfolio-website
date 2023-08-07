@@ -37,8 +37,10 @@ def log_in(request):
     password = request.POST['password_login']
     if Professor.objects.filter(user_name=user, password=password).exists():
         professor = Professor.objects.get(user_name=user, password=password)
+        professor_groups = professor.group_set.all()
         context = {
-            "professor": professor
+            "professor": professor,
+            "professor_groups": professor_groups
         }
         return render(request, "schoolms/account.html", context)
     else:
@@ -53,7 +55,9 @@ def create_new_group(request, professor_id):
     group_name = request.POST['group_name']
     academic_level = request.POST['academic_level']
     professor.group_set.create(group_name=group_name, academic_level=academic_level)
+    professor_groups = professor.group_set.all()
     context = {
-        "professor": professor
+        "professor": professor,
+        "professor_groups": professor_groups
     }
     return render(request, "schoolms/account.html", context)
