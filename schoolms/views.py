@@ -61,3 +61,17 @@ def create_new_group(request, professor_id):
         "professor_groups": professor_groups
     }
     return render(request, "schoolms/account.html", context)
+
+def add_new_student(request, group_id):
+    student_name = request.POST['student_name']
+    student_age = int(request.POST['student_age'])
+    student_genre = request.POST['student_genre']
+    group = Group.objects.get(id=group_id)
+    group.student_set.create(name=student_name, age=student_age, genre=student_genre)
+    professor = Professor.objects.get(id=group.professor_id)
+    professor_groups = professor.group_set.all()
+    context = {
+        "professor": professor,
+        "professor_groups": professor_groups
+    }
+    return render(request, "schoolms/account.html", context)

@@ -9,13 +9,7 @@
         <title>Document</title>
     </head>
     <body>
-
         {% if professor %}
-            <!-- <div class="flex items-center text-sm font-bold px-4 py-3">
-                <p>Hello {{professor.user_name}}</p>
-            </div>
-
-            <a href="{% url 'schoolms:login_page' %}">Log out</a> -->
 
             <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
@@ -98,9 +92,7 @@
                 <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
                     <div class="grid grid-cols-3 gap-4 mb-4">
                         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
-                            <p class="text-2xl text-gray-400 dark:text-gray-500">
-                                {% include 'schoolms/add_group.html' %}
-                            </p>
+                            {% include 'schoolms/add_group.html' %}
                         </div>
                         <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
                             <p class="text-2xl text-gray-400 dark:text-gray-500">
@@ -119,7 +111,7 @@
                     </div>
 
                     <!-- group board -->
-                    <div class="grid xl:grid-cols-4 xl:gap-5 lg:grid-cols-3 xl:gap-3 md:grid-cols-2 md:gap-2 sm:grid-cols-1 sm:gap-2 p-10 h-96 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+                    <div class="grid xl:grid-cols-4 gap-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 p-10 h-96 mb-4 rounded bg-gray-50 dark:bg-gray-800 overflow-auto">
                         {% if professor_groups %}
                             {% for group in professor_groups %}
                                 {% include 'schoolms/group.html' %}
