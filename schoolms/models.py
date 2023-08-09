@@ -27,13 +27,18 @@ class Student(models.Model):
         return self.name
 
 class Subject(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    student = models.ManyToManyField(Student, through="Subjectmarks")
     subject_name = models.CharField(max_length=50)
-    first_tcp_mark = models.IntegerField(blank=True)
-    second_tcp_mark = models.IntegerField(blank=True)
-    final_test_mark = models.IntegerField(blank=True)
-    extra_test_mark = models.IntegerField(blank=True)
-    mundial_test_mark = models.IntegerField(blank=True)
 
     def __str__(self):
         return self.subject_name
+
+class Subjectmarks(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    first_tcp_mark = models.IntegerField(blank=True)
+    second_tcp_mark = models.IntegerField(blank=True)
+    third_tcp_mark = models.IntegerField(blank=True)
+    final_test_mark = models.IntegerField(blank=True)
+    extra_test_mark = models.IntegerField(blank=True)
+    mundial_test_mark = models.IntegerField(blank=True)
