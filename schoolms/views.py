@@ -86,3 +86,29 @@ def student_dashboard(request, group_dash_id):
         "professor": professor
     }
     return render(request, "schoolms/student_dashboard.html", context)
+
+def delete_group(request, group_del_id):
+    group = Group.objects.get(id=group_del_id)
+    professor = Professor.objects.get(id=group.professor_id)
+    group.delete()
+    professor_groups = professor.group_set.all()
+    context = {
+        "professor": professor,
+        "professor_groups": professor_groups
+    }
+    return render(request, "schoolms/account.html", context)
+
+def edit_group_information(request, edit_group_id):
+    edit_group_name = request.POST['edit_group_name']
+    edit_academic_level = request.POST['edit_academic_level']
+    edit_group = Group.objects.get(id=edit_group_id)
+    edit_group.group_name = edit_group_name
+    edit_group.academic_level = edit_academic_level
+    edit_group.save()
+    professor = Professor.objects.get(id=edit_group.professor_id)
+    professor_groups = professor.group_set.all()
+    context = {
+        "professor": professor,
+        "professor_groups": professor_groups
+    }
+    return render(request, "schoolms/account.html", context)
