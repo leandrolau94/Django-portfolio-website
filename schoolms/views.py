@@ -87,6 +87,14 @@ def student_dashboard(request, group_dash_id):
     }
     return render(request, "schoolms/student_dashboard.html", context)
 
+def delete_student(request, student_del_id):
+    del_student = Student.objects.get(id=student_del_id)
+    group = Group.objects.get(id=del_student.group_id)
+    del_student.delete()
+    # students = group.student_set.all()
+    # professor = Professor.objects.get(id=group.professor_id)
+    return HttpResponseRedirect(reverse('schoolms:student_dashboard', args=(group.id,)))
+
 def delete_group(request, group_del_id):
     group = Group.objects.get(id=group_del_id)
     professor = Professor.objects.get(id=group.professor_id)
