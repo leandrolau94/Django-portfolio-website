@@ -75,3 +75,14 @@ def add_new_student(request, group_id):
         "professor_groups": professor_groups
     }
     return render(request, "schoolms/account.html", context)
+
+def student_dashboard(request, group_dash_id):
+    group = Group.objects.get(id=group_dash_id)
+    students = group.student_set.all()
+    professor = Professor.objects.get(id=group.professor_id)
+    context = {
+        "group": group,
+        "students": students,
+        "professor": professor
+    }
+    return render(request, "schoolms/student_dashboard.html", context)
